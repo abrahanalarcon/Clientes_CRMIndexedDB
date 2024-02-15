@@ -5,7 +5,7 @@
         crearDB();
     
         if(window.indexedDB.open('crm', 1)) {
-            // obtenerClientes();
+             obtenerClientes();
         }
         
     });
@@ -50,18 +50,14 @@
     }
 
 
- /*   function obtenerClientes() {
+   function obtenerClientes() {
+        const abrirConexion = window.indexedDB.open('crm', 1);
 
-        let abrirConexion = window.indexedDB.open('crm', 1);
-
-        // si hay un error, lanzarlo
         abrirConexion.onerror = function() {
             console.log('Hubo un error');
         };
     
-        // si todo esta bien, asignar a database el resultado
         abrirConexion.onsuccess = function() {
-            // guardamos el resultado
             DB = abrirConexion.result;
 
             const objectStore = DB.transaction('crm').objectStore('crm');
@@ -71,8 +67,6 @@
             objectStore.openCursor().onsuccess = function(e) {
                  // cursor se va a ubicar en el registro indicado para accede ra los datos
                  const cursor = e.target.result;
-
-                //  console.log(e.target);
      
                  if(cursor) {
                     const { nombre, empresa, email, telefono, id } = cursor.value;
@@ -97,19 +91,15 @@
                             </td>
                         </tr>
                     `;
-        
+                    
+
                     cursor.continue();
                  } else {
-                    //  console.log('llegamos al final...');
+                      console.log('No hay mas registros');
                  }
              };
-
-
-
         };
-
-
-    } */
+    } 
     
 
 })();
