@@ -42,35 +42,45 @@
             return;
         }
 
-  
+
+         // añadir a la BD...
+        // crear un nuevo objeto con toda la info
+
+        const cliente = {
+            nombre, 
+            email,
+            telefono,
+            empresa
+        };
+       // Generar un ID único
+       cliente.id = Date.now();
+
+       crearNuevoCliente(cliente);
     }
 
-   /* function crearNuevoCliente(cliente) {
-
-        
-
-        // NUEVO: 
+    function crearNuevoCliente(cliente) {
         const transaction = DB.transaction(['crm'], 'readwrite');
         const objectStore = transaction.objectStore('crm');
-        // console.log(objectStore);
+
         objectStore.add(cliente);
+        
+        transaction.onerror = function() {
+            imprimirAlerta('Hubo un error','error');
+         
+         } 
 
-        transaction.oncomplete = () => {
-            console.log('Cliente Agregado');
 
-            // Mostrar mensaje de que todo esta bien...
-            imprimirAlerta('Se agregó correctamente');
+        transaction.oncomplete = function() {
+           console.log('Cliente Agregado');
+           imprimirAlerta('El cliente se agregó correctamente')
 
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 3000);
-        };
 
-        transaction.onerror = () => {
-            console.log('Hubo un error!');
-            imprimirAlerta('Hubo un Error', 'error');
-        };
-    } */
+           setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 3000);
+        
+        } 
+    } 
 
     function imprimirAlerta(mensaje, tipo) {
          
