@@ -73,6 +73,10 @@
         transaction.oncomplete = function() {
            console.log('Cliente Agregado');
            imprimirAlerta('El cliente se agregó correctamente')
+
+           setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 3000);
         
         } 
     } 
